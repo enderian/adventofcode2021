@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+if [[ -z $1 ]]; then echo "Please specify a day!"; exit 1; fi
+day=$1;
+
+if [[ -d "src/main/kotlin/day${day}" ]]; then echo "Day already generated."; exit 1; fi
+mkdir "src/main/kotlin/day${day}";
+
+cat src/main/kotlin/util/Template.kt.tpl | sed -e "s/DAY/$day/g" > src/main/kotlin/day${day}/FirstStar.kt
+cat src/main/kotlin/util/Template.kt.tpl | sed -e "s/DAY/$day/g" > src/main/kotlin/day${day}/SecondStar.kt
+touch inputs/${day}.txt
