@@ -1,5 +1,6 @@
 package day4
 
+import util.SPACES
 import util.readInputIgnoreEmpty
 
 data class BingoBoard(
@@ -37,9 +38,10 @@ fun readInput4(): Pair<List<BingoBoard>, List<Int>> {
     while (input.isNotEmpty()) {
         val lines = input.takeWhile { it.isNotEmpty() }
         input = input.drop(lines.size + 1)
+
         boards = boards + BingoBoard(
-            lines.flatMap { it.split(Regex("\\s+")).map { n -> n.toInt() } },
-            lines.first().split(Regex("\\s+")).size
+            lines.flatMap { it.split(SPACES).map { n -> n.toInt() } },
+            lines.first().split(SPACES).size
         )
     }
     return Pair(boards, selected)
